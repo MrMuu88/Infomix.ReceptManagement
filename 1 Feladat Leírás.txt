@@ -4,22 +4,6 @@ az alkalamazásnak legy 3 fő része:
   - Asp.Net core BackEnd Api
   - Windows forms frontend
  
-az adatbáziban tárolandó adatok a következők:
-  A beteg neve                          => string(50)
-  A beteg címe                          => string(150)
-  A beteg születési dátuma              => dateTime
-  Közgyógyigazolvány érvényességi ideje => dateTime
-  Közgyógyigazolvány száma              => string(10)
-  TAJ szám                              => string(9)
-  Betegség kódja (BNO)                  => int(4)
-  Recept kiállításának dátuma           => DateTime
-  Általános jogcímmel (támogatással) rendelve => bool
-  Közgyógyellátottnak rendelve                => bool
-  EÜ. Rendelkezéssel (100% térítés) rendelve  => bool
-  EÜ térítés köteles áron rendelve            => bool
-  Teljes áron rendelve                        => bool
-  helyettesíthető => bool
-
 Az ASP.net Core Bakend Api-ban a következő endpointok legyenek megvalósítva:
   [POST] api/Prescription
     az endpoint új recept bejegyzést kell hogy létrehozzon a DB-ben
