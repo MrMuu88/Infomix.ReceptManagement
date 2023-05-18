@@ -6,7 +6,8 @@ a Windows forms technológiával készitsen egy frontend alkalmazást mely rács
     páciens neve
     a recept szövegének első 50 karaktere
     a recept kiállításának dátuma
-  az ablakon egyszerre maximum 20 darab elem listázódjon, legyen lehetőség navigálni a következő vag yelőző 20 darabra.
+  a Lista nézet 3 megjelenített adatára van keresési lehetőség a lapon
+  az ablakon egyszerre maximum 20 darab elem listázódjon, legyen lehetőség navigálni a következő vagy előző 20 darabra.
   legyen lehetőség új elemet hozzáadni egy üres, szerkeszthető recept nézet segítségével
   legyen lehetőség több elemet kijelölni, a kijelölteket törölni
   egy elemre duplán katintva nyíljon meg a recept nézet, melybe betöltődnek a kijelölt recept adatai
