@@ -1,0 +1,13 @@
+a Windows forms technológiával készitsen egy frontend alkalmazást mely rácsatlakozik az Api-ra és a következő nézeteket teszi elérhetővé:
+- Lista nézet
+  a rendszerben lévő recepteket jeleníti meg oly módon hogy a legfrissebb elemek vannak megjelenítve.
+  az ablakon egyszerre maximum 20 darab elem listázódjon, legyen lehetőség navigálni a következő vag yelőző 20 darabra.
+  legyen lehetőség új elemet hozzáadni egy üres, szerkeszthető recept nézet segítségével
+  legyen lehetőség több elemet kijelölni, a kijelölteket törölni
+  egy elemre duplán katintva nyíljon meg a recept nézet, melybe betöltődnek a kijelölt recept adatai
+- recept nézet:
+  egy recept adatait jeleníti meg létrehozásra vagy szerkesztésre.
+  szerkesztés esetén a módosítások mindaddig nem mentődnek, míg az 'Ok' gombra rá nem nyomunk
+  'mégse' gombra kattintva a recept adatai nem változnak
+
+  
