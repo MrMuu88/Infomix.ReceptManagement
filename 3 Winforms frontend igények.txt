@@ -5,7 +5,7 @@ a Windows forms technológiával készitsen egy frontend alkalmazást mely rács
   lista nézeten a következő adatok vannak megjelenítve:
     páciens neve
     a recept szövegének első 50 karaktere
-    a recept kiállításánal dátuma
+    a recept kiállításának dátuma
   az ablakon egyszerre maximum 20 darab elem listázódjon, legyen lehetőség navigálni a következő vag yelőző 20 darabra.
   legyen lehetőség új elemet hozzáadni egy üres, szerkeszthető recept nézet segítségével
   legyen lehetőség több elemet kijelölni, a kijelölteket törölni
@@ -15,5 +15,5 @@ a Windows forms technológiával készitsen egy frontend alkalmazást mely rács
   szerkesztés esetén a módosítások mindaddig nem mentődnek, míg az 'Ok' gombra rá nem nyomunk
   'mégse' gombra kattintva a recept adatai nem változnak
 
-a 
+a program kódjában a változók/fügvénynevek /osztály nevek/ kommentek legyenek magyar nyelven
   
