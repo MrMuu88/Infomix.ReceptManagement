@@ -1,6 +1,8 @@
-Szeretném ha készítene egy olyan alakalmazást melyen keresztül képesek lehetünkGyógyszer recepteket managelni.
-az alkalamazásnak legy 3 fő része:
-  - Mssql adatbázis
+Szeretném ha készítene egy olyan alakalmazást melyen keresztül képesek lehetünk Gyógyszer recepteket managelni.
+
+az alkalamazásnak legyen 3 fő része:
+  - SQlite vagy Mssql adatbázis
+      kérem a .db/.bak fájlt feltölteni
   - Asp.Net core BackEnd Api
   - Windows forms frontend
 
