@@ -3,16 +3,4 @@ az alkalamazásnak legy 3 fő része:
   - Mssql adatbázis
   - Asp.Net core BackEnd Api
   - Windows forms frontend
- 
-Az ASP.net Core Bakend Api-ban a következő endpointok legyenek megvalósítva:
-  [POST] api/Prescription
-    az endpoint új recept bejegyzést kell hogy létrehozzon a DB-ben
-  [GET] api/Prescription/{id}
-    az endpoint a megfelelő id-jú receptet adja vissza a DB-ből
-  [PUT] api/Prescription/{id}
-    az endpoint az adatbázisban létező, megfelelő idval rendelkező recordot frissíti a kapott értékekkel
-  [DELETE] api/Prescription/{id}
-    az endpoint a kapott id-jú recordot törli az adatbázisból
 
-a fentieken kívül a program működéséhez szükséges bármilyen más endpoint-ot is létrehozhat
-az api kódjában a változók/fügvénynevek /osztály nevek/ kommentek legyenek angol nyelven
