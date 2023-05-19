@@ -8,6 +8,8 @@ namespace Backend.ApiControllers
     [ApiController]
     public class SampleApiController : ControllerBase
     {
+        // https://localhost:7235/api/SampleApi
+
         // GET: api/<SampleApiController>
         [HttpGet]
         public IEnumerable<string> Get()
