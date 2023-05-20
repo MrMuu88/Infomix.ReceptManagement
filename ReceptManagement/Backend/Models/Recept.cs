@@ -8,7 +8,8 @@ namespace Backend.Models
 
         public DateTime ReceptKiallitasDatuma { get; set; }
 
-        public DateTime ReceptSzovege { get; set; }
+        [StringLength(512)]
+        public string ReceptSzovege { get; set; }
 
         public bool AltalanosJogcimmel { get; set; }
 

@@ -68,3 +68,36 @@ a Windows forms technológiával készitsen egy frontend alkalmazást mely rács
 
 a program kódjában a változók/fügvénynevek /osztály nevek/ kommentek legyenek magyar nyelven
   
+
+
+SELECT [PaciensId]
+      ,[Nev]
+      ,[Cim]
+      ,[Szuletesnap]
+      ,[TAJ]
+  FROM [infomix].[dbo].[Paciensek]
+
+SELECT [BNOId]
+      ,[BNOKod]
+      ,[BetegsegNeve]
+  FROM [infomix].[dbo].[BNOk]
+
+SELECT [ReceptId]
+      ,[ReceptKiallitasDatuma]
+      ,[ReceptSzovege]
+      ,[AltalanosJogcimmel]
+      ,[Kozgyogyellatottnak]
+      ,[EURendelkezessel]
+      ,[EUTeritesKotelesAronRendelve]
+      ,[TeljesAronRendelve]
+      ,[Helyettesitheto]
+      ,[PaciensId]
+      ,[BNOId]
+  FROM [infomix].[dbo].[Receptek]
+  
+-- insert into Paciensek (Nev,Cim,Szuletesnap,TAJ) Values ('Aladár', 'Alabama', '1960-01-01', '999666999')
+-- insert into BNOk (BNOkod,BetegsegNeve) Values ('A0800', 'Rotavírus bélhurut')
+
+insert into Receptek
+(ReceptKiallitasDatuma, ReceptSzovege, AltalanosJogcimmel, Kozgyogyellatottnak, EURendelkezessel, EUTeritesKotelesAronRendelve, TeljesAronRendelve, Helyettesitheto, PaciensId, BNOId)
+Values ('2023-05-31 15:07:00', 'Aladárnak sok betegésge közül Rotavirusra', 0,0,0,0,0,1,3,6)
