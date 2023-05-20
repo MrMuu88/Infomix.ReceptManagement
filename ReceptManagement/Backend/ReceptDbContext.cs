@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using System.Configuration;
 
 // Packe Manager-ben:
 // Install-Package Microsoft.EntityFrameworkCore.Tools
@@ -19,10 +20,21 @@ namespace Backend
         public DbSet<Paciens> Paciensek { get; set; }
         public DbSet<BNO> BNOk { get; set; }
 
+        public ReceptDbContext(DbContextOptions<ReceptDbContext> options): base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
             // Configure the database provider and connection string
-            optionsBuilder.UseSqlServer("Server=AURELPC\\SQLEXPRESS;Database=infomix;User Id=infomix;Password=infomix;TrustServerCertificate=true;");
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseSqlServer(connectionString);
+            //optionsBuilder.UseSqlServer("Server=AURELPC\\SQLEXPRESS;Database=infomix;User Id=infomix;Password=infomix;TrustServerCertificate=true;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
