@@ -6,6 +6,7 @@ using System.Reflection.Emit;
 // Packe Manager-ben:
 // Install-Package Microsoft.EntityFrameworkCore.Tools
 // CMD-ben:
+// cd c:\--CODE--\INFOMIX\ReceptManagement\Backend
 // dotnet tool install --global dotnet-ef
 // dotnet ef migrations add InitialCreate
 // dotnet ef database update
@@ -14,8 +15,9 @@ namespace Backend
 {
     public class ReceptDbContext : DbContext
     {
-        public DbSet<SampleTable> SampleTables { get; set; }
-        public DbSet<SampleTableElement> SampleTableElements { get; set; }
+        public DbSet<Recept> Receptek { get; set; }
+        public DbSet<Paciens> Paciensek { get; set; }
+        public DbSet<BNO> BNOk { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,10 +27,15 @@ namespace Backend
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SampleTable>()
-                .HasMany(st => st.SampleTableElements)
-                .WithOne(ste => ste.SampleTable)
-                .HasForeignKey(ste => ste.SampleTableId);
+            modelBuilder.Entity<Paciens>()
+                .HasMany(p => p.Receptek)
+                .WithOne(r => r.Paciens)
+                .HasForeignKey(r => r.PaciensId);
+
+            modelBuilder.Entity<BNO>()
+                .HasMany(b => b.Receptek)
+                .WithOne(r => r.BNO)
+                .HasForeignKey(r => r.BNOId);
         }
     }
 }

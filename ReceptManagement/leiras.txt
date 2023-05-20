@@ -1,0 +1,70 @@
+Szeretném ha készítene egy olyan alakalmazást melyen keresztül képesek lehetünk Gyógyszer recepteket managelni.
+
+az alkalamazásnak legyen 3 fő része:
+  - SQlite vagy Mssql adatbázis
+      kérem a .db/.bak fájlt feltölteni
+  - Asp.Net core BackEnd Api
+  - Windows forms frontend
+
+================    Adatbázis igények    ================
+az adatbáziban tárolandó adatok a következők:
+Páciensek tábla:
+  A beteg neve                          => string(50)
+  A beteg címe                          => string(150)
+  A beteg születési dátuma              => dateTime
+  TAJ szám                              => string(9)
+  
+recept tábla:
+  Betegség kódja (BNO)                        => string(5)
+  Recept kiállításának dátuma                 => DateTime
+  a Recept Szövege                            => string(512)
+  Általános jogcímmel (támogatással) rendelve => bool
+  Közgyógyellátottnak rendelve                => bool
+  EÜ. Rendelkezéssel (100% térítés) rendelve  => bool
+  EÜ térítés köteles áron rendelve            => bool
+  Teljes áron rendelve                        => bool
+  helyettesíthető                             => bool
+
+BNO törzs tábla:
+  BNO kód
+  betegség neve
+  
+Egy pácienshez több Recept tartozhat
+
+egy BNO kódhoz több Recept tartozhat
+
+================    API igények    ================
+Az ASP.net Core Bakend Api-ban a következő endpointok legyenek megvalósítva:
+  [POST] api/Prescription
+    az endpoint új recept bejegyzést kell hogy létrehozzon a DB-ben
+  [GET] api/Prescription/{id}
+    az endpoint a megfelelő id-jú receptet adja vissza a DB-ből
+  [PUT] api/Prescription/{id}
+    az endpoint az adatbázisban létező, megfelelő idval rendelkező recordot frissíti a kapott értékekkel
+  [DELETE] api/Prescription/{id}
+    az endpoint a kapott id-jú recordot törli az adatbázisból
+
+a fentieken kívül a program működéséhez szükséges bármilyen más endpoint-ot is létrehozhat
+az api kódjában a változók/fügvénynevek /osztály nevek/ kommentek legyenek angol nyelven
+
+================    Winforms igények    ================
+a Windows forms technológiával készitsen egy frontend alkalmazást mely rácsatlakozik az Api-ra és a következő nézeteket teszi elérhetővé:
+- Lista nézet
+  a rendszerben lévő recepteket jeleníti meg oly módon hogy a legfrissebb elemek vannak megjelenítve.
+  a programot elindítva ez a nézet jelenik meg, adattal feltöltve
+  lista nézeten a következő adatok vannak megjelenítve:
+    páciens neve
+    a recept szövegének első 50 karaktere
+    a recept kiállításának dátuma
+  a Lista nézet 3 megjelenített adatára van keresési lehetőség a lapon
+  az ablakon egyszerre maximum 20 darab elem listázódjon, legyen lehetőség navigálni a következő vagy előző 20 darabra.
+  legyen lehetőség új elemet hozzáadni egy üres, szerkeszthető recept nézet segítségével
+  legyen lehetőség több elemet kijelölni, a kijelölteket törölni
+  egy elemre duplán katintva nyíljon meg a recept nézet, melybe betöltődnek a kijelölt recept adatai
+- recept nézet:
+  egy recept adatait jeleníti meg létrehozásra vagy szerkesztésre.
+  szerkesztés esetén a módosítások mindaddig nem mentődnek, míg az 'Ok' gombra rá nem nyomunk
+  'mégse' gombra kattintva a recept adatai nem változnak
+
+a program kódjában a változók/fügvénynevek /osztály nevek/ kommentek legyenek magyar nyelven
+  
