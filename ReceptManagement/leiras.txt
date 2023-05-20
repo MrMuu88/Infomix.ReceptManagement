@@ -61,6 +61,7 @@ a Windows forms technológiával készitsen egy frontend alkalmazást mely rács
   legyen lehetőség új elemet hozzáadni egy üres, szerkeszthető recept nézet segítségével
   legyen lehetőség több elemet kijelölni, a kijelölteket törölni
   egy elemre duplán katintva nyíljon meg a recept nézet, melybe betöltődnek a kijelölt recept adatai
+  
 - recept nézet:
   egy recept adatait jeleníti meg létrehozásra vagy szerkesztésre.
   szerkesztés esetén a módosítások mindaddig nem mentődnek, míg az 'Ok' gombra rá nem nyomunk

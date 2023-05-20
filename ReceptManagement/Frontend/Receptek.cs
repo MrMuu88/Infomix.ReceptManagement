@@ -11,6 +11,11 @@ namespace Frontend
             InitializeComponent();
         }
 
+        private async void Receptek_Load(object sender, EventArgs e)
+        {
+            List<Recept> receptek = await ApiKommunikacio.ReceptekLekereseAsync(4,10);
+        }
+
         private async void getToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // TESZT - recept lekérése Id alapján (get/id)

@@ -81,7 +81,8 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Receptek";
-            Text = "Form1";
+            Text = "Pácienseknek felírt receptek";
+            Load += Receptek_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

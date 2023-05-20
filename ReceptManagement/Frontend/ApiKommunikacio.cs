@@ -13,6 +13,7 @@ namespace Frontend
     {
         private static string apiBaseUrl = "https://localhost:7235/api/PrescriptionApi";
 
+        // https://localhost:7235/api/PrescriptionApi/7
         public static async Task<Recept> ReceptLekereseAsync(int id)
         {
             try
@@ -39,6 +40,40 @@ namespace Frontend
                 Recept recept = JsonConvert.DeserializeObject<Recept>(jsonRecept);
 
                 return recept;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        // https://localhost:7235/api/PrescriptionApi/limitoffset?limit=4&offset=10
+        public static async Task<List<Recept>> ReceptekLekereseAsync(int limit = 4, int offset = 10)
+        {
+            try
+            {
+                // Az API végpont URL-je és az adott rekord azonosítója
+                string apiUrl = apiBaseUrl + "/?limit=" + limit + "/&offset=" + offset;
+
+                // HttpClient inicializálása
+                using var httpKliens = new HttpClient();
+
+                // GET kérés elküldése az API végpont felé
+                var valasz = await httpKliens.GetAsync(apiUrl);
+
+                // Válasz ellenőrzése
+                if (!valasz.IsSuccessStatusCode)
+                {
+                    throw new Exception("Receptek lekérdezése sikertelen: " + valasz.StatusCode);
+                }
+
+                // Válasz tartalmának olvasása JSON formátumban
+                string jsonRecept = await valasz.Content.ReadAsStringAsync();
+
+                // JSON formátumból történő deszerializálás List<Recept> listává
+                List<Recept> receptek = JsonConvert.DeserializeObject<List<Recept>>(jsonRecept);
+
+                return receptek;
             }
             catch (Exception ex)
             {
