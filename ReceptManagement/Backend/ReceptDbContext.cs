@@ -3,6 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 
+// Packe Manager-ben:
+// Install-Package Microsoft.EntityFrameworkCore.Tools
+// dotnet tool install --global dotnet-ef
+// dotnet ef migrations add InitialCreate
+// 
+
 namespace Backend
 {
     public class ReceptDbContext : DbContext
@@ -13,7 +19,7 @@ namespace Backend
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Configure the database provider and connection string
-            optionsBuilder.UseSqlServer("YourConnectionString");
+            optionsBuilder.UseSqlServer("Server=AURELPC\\SQLEXPRESS;Database=infomix;User Id=infomix;Password=infomix;Trusted_Connection=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
