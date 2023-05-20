@@ -22,7 +22,7 @@ namespace Backend.ApiControllers
         [HttpGet]
         public IEnumerable<Recept> Get()
         {
-            return _dbContext.Receptek.ToList();
+            return _dbContext.Receptek.OrderByDescending(r => r.ReceptKiallitasDatuma).ToList();
         }
 
         // GET api/<PrescriptionApiController>/5
@@ -30,6 +30,12 @@ namespace Backend.ApiControllers
         public Recept Get(int id)
         {
             return _dbContext.Receptek.Where(r => r.ReceptId == id).FirstOrDefault();
+        }
+
+        [HttpGet("limitoffset")]
+        public IEnumerable<Recept> GetPrescriptionsWithLimitAndOffset(int limit, int offset)
+        {
+            return _dbContext.Receptek.Skip(offset).Take(limit);
         }
 
         [HttpPost]
