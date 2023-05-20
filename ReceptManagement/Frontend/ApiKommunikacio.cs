@@ -72,13 +72,13 @@ namespace Frontend
             }
         }
 
-        public static async Task ReceptModositasaAsync(int id, Recept updatedRecept)
+        public static async Task ReceptModositasaAsync(Recept modositottRecept)
         {
-            // Az updatedRecept objektum JSON formátummá alakítása
-            string jsonRecept = JsonConvert.SerializeObject(updatedRecept);
+            // A modositottRecept objektum JSON formátummá alakítása
+            string jsonRecept = JsonConvert.SerializeObject(modositottRecept);
 
             // Az API végpont URL-je és az adott rekord azonosítója
-            string apiUrl = apiBaseUrl + id;
+            string apiUrl = apiBaseUrl + "/" + modositottRecept.ReceptId;
 
             // HttpClient inicializálása
             using var httpKliens = new HttpClient();
@@ -87,9 +87,13 @@ namespace Frontend
             var valasz = await httpKliens.PutAsync(apiUrl, new StringContent(jsonRecept, Encoding.UTF8, "application/json"));
 
             // Válasz ellenőrzése
-            if (!valasz.IsSuccessStatusCode)
+            if (valasz.IsSuccessStatusCode)
             {
-                throw new Exception("Recept frissítése sikertelen: " + valasz.StatusCode);
+                Console.WriteLine("Sikeres PUT kérés");
+            }
+            else
+            {
+                Console.WriteLine($"Hiba történt: {valasz.StatusCode}");
             }
         }
      

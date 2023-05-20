@@ -39,18 +39,19 @@ namespace Frontend
         {
             Recept modositottRecept = new Recept()
             {
+                ReceptId = 17,
                 PaciensId = 3, // Aladar
-                BNOId = 6, // Rotavirus
+                BNOId = 7, // Kohoges
                 AltalanosJogcimmel = false,
                 EURendelkezessel = false,
                 EUTeritesKotelesAronRendelve = false,
                 Helyettesitheto = false,
                 Kozgyogyellatottnak = false,
                 ReceptKiallitasDatuma = DateTime.Now.ToUniversalTime(),
-                ReceptSzovege = "Aladarnak Rotavirusra modositva",
+                ReceptSzovege = "Aladarnak náthás megfázásos köhögés csillapítására (modositva)",// eredetileg: "Aladarnak Rotavirusra"
                 TeljesAronRendelve = false
             };
-            await ApiKommunikacio.ReceptModositasaAsync(15, modositottRecept);
+            await ApiKommunikacio.ReceptModositasaAsync(modositottRecept);
         }
 
         private async void deleteToolStripMenuItem_Click(object sender, EventArgs e)

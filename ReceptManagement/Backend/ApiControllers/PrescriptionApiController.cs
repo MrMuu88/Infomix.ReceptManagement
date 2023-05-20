@@ -37,7 +37,7 @@ namespace Backend.ApiControllers
         {
             using (StreamReader reader = new StreamReader(Request.Body))
             {
-                var requestBody = await reader.ReadToEndAsync();
+                string? requestBody = await reader.ReadToEndAsync();
 
                 Recept newPrescription = JsonConvert.DeserializeObject<Recept>(requestBody);
                 _dbContext.Receptek.Add(newPrescription);
@@ -48,24 +48,42 @@ namespace Backend.ApiControllers
 
         // PUT api/<PrescriptionApiController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Recept recept)
+
+        public async Task<IActionResult> Put(int id)
         {
-            Recept existingRecept = _dbContext.Receptek.FirstOrDefault(r => r.ReceptId == id);
-            if (existingRecept == null)
+            using (StreamReader reader = new StreamReader(Request.Body))
             {
-                throw new Exception("Not Found - Recept Id: " + id);
+                string? requestBody = await reader.ReadToEndAsync();
+                if (string.IsNullOrEmpty(requestBody))
+                {
+                    return NoContent();
+                }
+
+                // Deserialize the request body into an object
+                Recept updatedPrescription = JsonConvert.DeserializeObject<Recept>(requestBody);
+
+                // Update the existing prescription with the provided ID
+                var existingPrescription = _dbContext.Receptek.Find(id);
+                if (existingPrescription == null)
+                {
+                    return NotFound(); // Return a 404 Not Found response if the prescription doesn't exist
+                }
+
+                // Update the properties of the existing prescription
+                existingPrescription.ReceptKiallitasDatuma = updatedPrescription.ReceptKiallitasDatuma;
+                existingPrescription.EURendelkezessel = updatedPrescription.EURendelkezessel;
+                existingPrescription.TeljesAronRendelve = updatedPrescription.TeljesAronRendelve;
+                existingPrescription.EUTeritesKotelesAronRendelve = updatedPrescription.EUTeritesKotelesAronRendelve;
+                existingPrescription.Helyettesitheto = updatedPrescription.Helyettesitheto;
+                existingPrescription.AltalanosJogcimmel = updatedPrescription.AltalanosJogcimmel;
+                existingPrescription.ReceptSzovege = updatedPrescription.ReceptSzovege;
+                existingPrescription.Kozgyogyellatottnak = updatedPrescription.Kozgyogyellatottnak;
+                existingPrescription.PaciensId = updatedPrescription.PaciensId;
+                existingPrescription.BNOId = updatedPrescription.BNOId;
+                _dbContext.SaveChanges();
+
+                return Ok(); // Return an appropriate response
             }
-            existingRecept.ReceptKiallitasDatuma = recept.ReceptKiallitasDatuma;
-            existingRecept.EURendelkezessel = recept.EURendelkezessel;
-            existingRecept.TeljesAronRendelve = recept.TeljesAronRendelve;
-            existingRecept.EUTeritesKotelesAronRendelve = recept.EUTeritesKotelesAronRendelve;
-            existingRecept.Helyettesitheto = recept.Helyettesitheto;
-            existingRecept.AltalanosJogcimmel = recept.AltalanosJogcimmel;
-            existingRecept.ReceptSzovege = recept.ReceptSzovege;
-            existingRecept.Kozgyogyellatottnak = recept.Kozgyogyellatottnak;
-            existingRecept.PaciensId = recept.PaciensId;
-            existingRecept.BNOId = recept.BNOId;
-            _dbContext.SaveChanges();
         }
 
         // DELETE api/<PrescriptionApiController>/5
