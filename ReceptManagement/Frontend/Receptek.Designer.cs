@@ -29,54 +29,58 @@
         private void InitializeComponent()
         {
             menuStrip1 = new MenuStrip();
-            aToolStripMenuItem = new ToolStripMenuItem();
-            bToolStripMenuItem = new ToolStripMenuItem();
-            cToolStripMenuItem = new ToolStripMenuItem();
-            dToolStripMenuItem = new ToolStripMenuItem();
+            getToolStripMenuItem = new ToolStripMenuItem();
+            postToolStripMenuItem = new ToolStripMenuItem();
+            putToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { aToolStripMenuItem, bToolStripMenuItem, cToolStripMenuItem, dToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { getToolStripMenuItem, postToolStripMenuItem, putToolStripMenuItem, deleteToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // aToolStripMenuItem
+            // getToolStripMenuItem
             // 
-            aToolStripMenuItem.Name = "aToolStripMenuItem";
-            aToolStripMenuItem.Size = new Size(27, 20);
-            aToolStripMenuItem.Text = "A";
+            getToolStripMenuItem.Name = "getToolStripMenuItem";
+            getToolStripMenuItem.Size = new Size(39, 20);
+            getToolStripMenuItem.Text = "GET";
+            getToolStripMenuItem.Click += getToolStripMenuItem_Click;
             // 
-            // bToolStripMenuItem
+            // postToolStripMenuItem
             // 
-            bToolStripMenuItem.Name = "bToolStripMenuItem";
-            bToolStripMenuItem.Size = new Size(26, 20);
-            bToolStripMenuItem.Text = "B";
+            postToolStripMenuItem.Name = "postToolStripMenuItem";
+            postToolStripMenuItem.Size = new Size(47, 20);
+            postToolStripMenuItem.Text = "POST";
+            postToolStripMenuItem.Click += postToolStripMenuItem_Click;
             // 
-            // cToolStripMenuItem
+            // putToolStripMenuItem
             // 
-            cToolStripMenuItem.Name = "cToolStripMenuItem";
-            cToolStripMenuItem.Size = new Size(27, 20);
-            cToolStripMenuItem.Text = "C";
+            putToolStripMenuItem.Name = "putToolStripMenuItem";
+            putToolStripMenuItem.Size = new Size(40, 20);
+            putToolStripMenuItem.Text = "PUT";
+            putToolStripMenuItem.Click += putToolStripMenuItem_Click;
             // 
-            // dToolStripMenuItem
+            // deleteToolStripMenuItem
             // 
-            dToolStripMenuItem.Name = "dToolStripMenuItem";
-            dToolStripMenuItem.Size = new Size(27, 20);
-            dToolStripMenuItem.Text = "D";
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(57, 20);
+            deleteToolStripMenuItem.Text = "DELETE";
+            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
-            // Form1
+            // Receptek
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Name = "Form1";
+            Name = "Receptek";
             Text = "Form1";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -87,9 +91,9 @@
         #endregion
 
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem aToolStripMenuItem;
-        private ToolStripMenuItem bToolStripMenuItem;
-        private ToolStripMenuItem cToolStripMenuItem;
-        private ToolStripMenuItem dToolStripMenuItem;
+        private ToolStripMenuItem getToolStripMenuItem;
+        private ToolStripMenuItem postToolStripMenuItem;
+        private ToolStripMenuItem putToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
