@@ -1,6 +1,7 @@
 ﻿using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Backend.ApiControllers
 {
@@ -31,12 +32,18 @@ namespace Backend.ApiControllers
             return _dbContext.Receptek.Where(r => r.ReceptId == id).FirstOrDefault();
         }
 
-        // POST api/<PrescriptionApiController>
         [HttpPost]
-        public void Post([FromBody] Recept recept)
+        public async Task<IActionResult> Post()
         {
-            _dbContext.Receptek.Add(recept);
-            _dbContext.SaveChanges();
+            using (StreamReader reader = new StreamReader(Request.Body))
+            {
+                var requestBody = await reader.ReadToEndAsync();
+
+                Recept newPrescription = JsonConvert.DeserializeObject<Recept>(requestBody);
+                _dbContext.Receptek.Add(newPrescription);
+                _dbContext.SaveChanges();
+                return Ok(); // Return an appropriate response
+            }
         }
 
         // PUT api/<PrescriptionApiController>/5

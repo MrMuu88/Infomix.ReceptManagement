@@ -13,7 +13,6 @@ namespace Frontend.Models
 
         public DateTime ReceptKiallitasDatuma { get; set; }
 
-        [StringLength(512)]
         public string ReceptSzovege { get; set; }
 
         public bool AltalanosJogcimmel { get; set; }

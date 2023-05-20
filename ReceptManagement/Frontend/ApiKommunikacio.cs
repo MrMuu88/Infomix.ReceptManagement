@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,14 +11,14 @@ namespace Frontend
 {
     public static class ApiKommunikacio
     {
-        private static string apiBaseUrl = "https://localhost:7235/api/PrescriptionApi/";
+        private static string apiBaseUrl = "https://localhost:7235/api/PrescriptionApi";
 
         public static async Task<Recept> ReceptLekereseAsync(int id)
         {
             try
             {
                 // Az API végpont URL-je és az adott rekord azonosítója
-                string apiUrl = apiBaseUrl + id;
+                string apiUrl = apiBaseUrl + "/" + id;
 
                 // HttpClient inicializálása
                 using var httpKliens = new HttpClient();
@@ -45,27 +46,29 @@ namespace Frontend
             }
         }
 
-        public static async Task ReceptHozzaadasaAsync(Recept recept)
+        public static async Task ReceptHozzaadasaAsync(Recept ujRecept)
         {
-            // Az API végpont URL-je
-            string apiUrl = apiBaseUrl;
+            string url = apiBaseUrl;
+            string jsonStringRecept = JsonConvert.SerializeObject(ujRecept);
 
-            // HttpClient inicializálása
-            using var httpKliens = new HttpClient();
-
-            // Recept objektum JSON formátummá alakítása
-            string jsonRecept = JsonConvert.SerializeObject(recept);
-
-            // JSON adatok elküldése a kérésben
-            var content = new StringContent(jsonRecept, Encoding.UTF8, "application/json");
-
-            // POST kérés elküldése az API végpont felé
-            var valasz = await httpKliens.PostAsync(apiUrl, content);
-
-            // Válasz ellenőrzése
-            if (!valasz.IsSuccessStatusCode)
+            using (HttpClient client = new HttpClient())
             {
-                throw new Exception("Recept hozzáadása sikertelen: " + valasz.StatusCode);
+                // Beállítások a kéréshez
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                // A POST kérés elküldése
+                HttpResponseMessage response = await client.PostAsync(url, new StringContent(jsonStringRecept, System.Text.Encoding.UTF8, "application/json"));
+
+                // A válasz kezelése
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Sikeres POST kérés");
+                }
+                else
+                {
+                    Console.WriteLine($"Hiba történt: {response.StatusCode}");
+                }
             }
         }
 
@@ -94,7 +97,7 @@ namespace Frontend
         {
             using (HttpClient httpKliens = new HttpClient())
             {
-                string url = apiBaseUrl + id;
+                string url = apiBaseUrl + "/" + id;
 
                 HttpResponseMessage valasz = await httpKliens.DeleteAsync(url);
 
