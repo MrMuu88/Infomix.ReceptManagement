@@ -42,7 +42,7 @@ namespace Frontend
 
                 return recept;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -76,7 +76,7 @@ namespace Frontend
 
                 return receptek;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -137,9 +137,9 @@ namespace Frontend
         {
             using (HttpClient httpKliens = new HttpClient())
             {
-                string url = apiBaseUrl + "/" + id;
+                string apiUrl = apiBaseUrl + "/PrescriptionApi" + "/" + id;
 
-                HttpResponseMessage valasz = await httpKliens.DeleteAsync(url);
+                HttpResponseMessage valasz = await httpKliens.DeleteAsync(apiUrl);
 
                 if (valasz.IsSuccessStatusCode)
                 {
@@ -179,7 +179,7 @@ namespace Frontend
 
                 return BNOk;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -212,7 +212,7 @@ namespace Frontend
 
                 return Paciensek;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

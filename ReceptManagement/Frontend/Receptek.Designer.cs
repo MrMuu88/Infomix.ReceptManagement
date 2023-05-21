@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            menuStrip1 = new MenuStrip();
-            getToolStripMenuItem = new ToolStripMenuItem();
-            postToolStripMenuItem = new ToolStripMenuItem();
-            putToolStripMenuItem = new ToolStripMenuItem();
-            deleteToolStripMenuItem = new ToolStripMenuItem();
             listView1 = new ListView();
             PatientName = new ColumnHeader();
             PrescriptionText = new ColumnHeader();
@@ -41,53 +36,15 @@
             btnUjRecept = new Button();
             btnReceptekTorlese = new Button();
             btnReceptekFrissitese = new Button();
-            menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { getToolStripMenuItem, postToolStripMenuItem, putToolStripMenuItem, deleteToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
-            // 
-            // getToolStripMenuItem
-            // 
-            getToolStripMenuItem.Name = "getToolStripMenuItem";
-            getToolStripMenuItem.Size = new Size(39, 20);
-            getToolStripMenuItem.Text = "GET";
-            getToolStripMenuItem.Click += getToolStripMenuItem_Click;
-            // 
-            // postToolStripMenuItem
-            // 
-            postToolStripMenuItem.Name = "postToolStripMenuItem";
-            postToolStripMenuItem.Size = new Size(47, 20);
-            postToolStripMenuItem.Text = "POST";
-            postToolStripMenuItem.Click += postToolStripMenuItem_Click;
-            // 
-            // putToolStripMenuItem
-            // 
-            putToolStripMenuItem.Name = "putToolStripMenuItem";
-            putToolStripMenuItem.Size = new Size(40, 20);
-            putToolStripMenuItem.Text = "PUT";
-            putToolStripMenuItem.Click += putToolStripMenuItem_Click;
-            // 
-            // deleteToolStripMenuItem
-            // 
-            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(57, 20);
-            deleteToolStripMenuItem.Text = "DELETE";
-            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // listView1
             // 
             listView1.Columns.AddRange(new ColumnHeader[] { PatientName, PrescriptionText, PrescribedDate, PrescriptionId });
             listView1.FullRowSelect = true;
-            listView1.Location = new Point(0, 27);
+            listView1.Location = new Point(12, 12);
             listView1.Name = "listView1";
-            listView1.Size = new Size(796, 334);
+            listView1.Size = new Size(776, 349);
             listView1.TabIndex = 1;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
@@ -129,7 +86,7 @@
             btnReceptekTorlese.Name = "btnReceptekTorlese";
             btnReceptekTorlese.Size = new Size(110, 43);
             btnReceptekTorlese.TabIndex = 3;
-            btnReceptekTorlese.Text = "Receptek törlése";
+            btnReceptekTorlese.Text = "Recept(ek) törlése";
             btnReceptekTorlese.UseVisualStyleBackColor = true;
             btnReceptekTorlese.Click += btnReceptekTorlese_Click;
             // 
@@ -152,24 +109,13 @@
             Controls.Add(btnReceptekTorlese);
             Controls.Add(btnUjRecept);
             Controls.Add(listView1);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
             Name = "Receptek";
             Text = "Pácienseknek felírt receptek";
             Load += Receptek_Load;
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem getToolStripMenuItem;
-        private ToolStripMenuItem postToolStripMenuItem;
-        private ToolStripMenuItem putToolStripMenuItem;
-        private ToolStripMenuItem deleteToolStripMenuItem;
         private ListView listView1;
         private ColumnHeader PatientName;
         private ColumnHeader PrescriptionText;

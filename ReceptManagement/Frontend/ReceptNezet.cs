@@ -17,9 +17,9 @@ namespace Frontend
     public partial class ReceptNezet : Form
     {
         private int ReceptID = -1;
-        private List<BNOResponse> BNOk = null;
-        private List<PatientsResponse> Paciensek = null;
-        Recept felirtRecept = null;
+        private List<BNOResponse> BNOk;
+        private List<PatientsResponse> Paciensek;
+        Recept felirtRecept;
 
         // új recept létrehozásához
         public ReceptNezet()

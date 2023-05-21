@@ -101,4 +101,7 @@ SELECT [ReceptId]
 
 insert into Receptek
 (ReceptKiallitasDatuma, ReceptSzovege, AltalanosJogcimmel, Kozgyogyellatottnak, EURendelkezessel, EUTeritesKotelesAronRendelve, TeljesAronRendelve, Helyettesitheto, PaciensId, BNOId)
-Values ('2023-05-31 15:07:00', 'Aladárnak sok betegésge közül Rotavirusra', 0,0,0,0,0,1,3,6)
+Values (GETUTCDATE(), 'Józsefnek köhögésre (törlés teszt 03)', 0,0,0,0,0,1,1,7)
+
+
+
