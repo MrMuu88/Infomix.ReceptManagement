@@ -96,7 +96,8 @@ namespace Frontend
             {
                 if (string.IsNullOrEmpty(tboxReceptSzovege.Text))
                 {
-                    MessageBox.Show("Adjon meg szöveget a recepthez!","Nincs kitöltve a recept",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show("Adjon meg szöveget a recepthez!", "Nincs kitöltve a recept", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 PatientsResponse kivalasztottPaciens = cbPaciens.SelectedItem as PatientsResponse;
@@ -122,8 +123,9 @@ namespace Frontend
                     await ApiKommunikacio.ReceptHozzaadasaAsync(felirtRecept);
                 }
             }
-            catch(Exception ex) {
-                ;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
