@@ -9,6 +9,8 @@ namespace Frontend
 {
     public partial class Receptek : Form
     {
+        private int lapozoKihagyas = 0;
+
         public List<PrescriptionResponse> felirtReceptek;
 
         public Receptek()
@@ -19,32 +21,6 @@ namespace Frontend
         private async void Receptek_Load(object sender, EventArgs e)
         {
             ReceptekBetoltese();
-        }
-
-        private async void ReceptekBetoltese()
-        {
-            this.Cursor = Cursors.WaitCursor;
-            try
-            {
-                listView1.Items.Clear();
-                felirtReceptek = await ApiKommunikacio.ReceptekLekereseAsync(20, 0);
-                foreach (var r in felirtReceptek)
-                {
-                    ListViewItem lvi = new ListViewItem(r.PatientName);
-                    lvi.SubItems.Add(r.PrescriptionText);
-                    lvi.SubItems.Add(r.PrescribedDate.ToString());
-                    lvi.SubItems.Add(r.PrescriptionId.ToString());
-                    listView1.Items.Add(lvi);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "HIBA", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }
         }
 
         private void btnReceptekFrissitese_Click(object sender, EventArgs e)
@@ -113,6 +89,47 @@ namespace Frontend
             ReceptekBetoltese();
         }
 
+        private async void ReceptekBetoltese()
+        {
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                listView1.Items.Clear();
+                felirtReceptek = await ApiKommunikacio.ReceptekLekereseAsync(20, lapozoKihagyas);
+                foreach (var r in felirtReceptek)
+                {
+                    ListViewItem lvi = new ListViewItem(r.PatientName);
+                    lvi.SubItems.Add(r.PrescriptionText);
+                    lvi.SubItems.Add(r.PrescribedDate.ToString());
+                    lvi.SubItems.Add(r.PrescriptionId.ToString());
+                    listView1.Items.Add(lvi);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "HIBA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
 
+        private void btnUjabbReceptek_Click(object sender, EventArgs e)
+        {
+            lapozoKihagyas -= 20;
+            if (lapozoKihagyas < 0)
+            {
+                MessageBox.Show("Ezek a legfrissebb receptek, nincsenek újabbak", "Legújabb receptek.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lapozoKihagyas = 0;
+            }
+            ReceptekBetoltese();
+        }
+
+        private void btnRegebbiReceptek_Click(object sender, EventArgs e)
+        {
+            lapozoKihagyas += 20;
+            ReceptekBetoltese();
+        }
     }
 }
