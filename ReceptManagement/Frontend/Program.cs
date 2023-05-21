@@ -1,5 +1,9 @@
 namespace Frontend
 {
+    // TODO: Közel áll (funkcionalitásban) a készhez,
+    // Ami hiányzik az a Recepthez tartozo bool adatok
+    // További tesztelés és try catch-ek hibaüzenetekkel
+
     internal static class Program
     {
         /// <summary>

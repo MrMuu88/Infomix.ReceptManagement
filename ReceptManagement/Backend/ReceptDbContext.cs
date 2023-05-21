@@ -4,13 +4,20 @@ using System.Collections.Generic;
 using System.Reflection.Emit;
 using System.Configuration;
 
-// Packe Manager-ben:
+// Package Manager:
 // Install-Package Microsoft.EntityFrameworkCore.Tools
-// CMD-ben:
+
+// CMD:
 // cd c:\--CODE--\INFOMIX\ReceptManagement\Backend
 // dotnet tool install --global dotnet-ef
 // dotnet ef migrations add InitialCreate
 // dotnet ef database update
+
+// I used MS SQL EXPRESS 2022. Commited a recent .bak, .mdf, .ldf files
+// TODO: I did not use "EnsureCreated".
+// You have to create an empty database.
+// You can find the connectionstring in appsettings.json, and appsettings.Development.json
+// I accidently used "api/PrescriptionApi" instead of "api/Prescription"
 
 namespace Backend
 {
@@ -26,7 +33,6 @@ namespace Backend
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
@@ -34,7 +40,6 @@ namespace Backend
             // Configure the database provider and connection string
             string connectionString = configuration.GetConnectionString("DefaultConnection");
             optionsBuilder.UseSqlServer(connectionString);
-            //optionsBuilder.UseSqlServer("Server=AURELPC\\SQLEXPRESS;Database=infomix;User Id=infomix;Password=infomix;TrustServerCertificate=true;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
