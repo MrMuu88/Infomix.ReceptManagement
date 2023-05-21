@@ -31,11 +31,16 @@
             btnOk = new Button();
             btnMegsem = new Button();
             label1 = new Label();
+            tboxReceptSzovege = new TextBox();
+            lblPaciensNeve = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            lblReceptKiallitasDatuma = new Label();
             SuspendLayout();
             // 
             // btnOk
             // 
-            btnOk.Location = new Point(148, 158);
+            btnOk.Location = new Point(188, 252);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(96, 23);
             btnOk.TabIndex = 0;
@@ -45,7 +50,7 @@
             // 
             // btnMegsem
             // 
-            btnMegsem.Location = new Point(275, 158);
+            btnMegsem.Location = new Point(315, 252);
             btnMegsem.Name = "btnMegsem";
             btnMegsem.Size = new Size(96, 23);
             btnMegsem.TabIndex = 1;
@@ -56,17 +61,64 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(15, 14);
+            label1.Location = new Point(16, 16);
             label1.Name = "label1";
             label1.Size = new Size(78, 15);
             label1.TabIndex = 2;
             label1.Text = "Páciens neve:";
             // 
+            // tboxReceptSzovege
+            // 
+            tboxReceptSzovege.Location = new Point(12, 66);
+            tboxReceptSzovege.Multiline = true;
+            tboxReceptSzovege.Name = "tboxReceptSzovege";
+            tboxReceptSzovege.Size = new Size(375, 158);
+            tboxReceptSzovege.TabIndex = 3;
+            // 
+            // lblPaciensNeve
+            // 
+            lblPaciensNeve.AutoSize = true;
+            lblPaciensNeve.Location = new Point(93, 16);
+            lblPaciensNeve.Name = "lblPaciensNeve";
+            lblPaciensNeve.Size = new Size(0, 15);
+            lblPaciensNeve.TabIndex = 4;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(16, 48);
+            label2.Name = "label2";
+            label2.Size = new Size(91, 15);
+            label2.TabIndex = 5;
+            label2.Text = "Recept szövege:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(16, 31);
+            label3.Name = "label3";
+            label3.Size = new Size(94, 15);
+            label3.TabIndex = 6;
+            label3.Text = "Kiállítás dátuma:";
+            // 
+            // lblReceptKiallitasDatuma
+            // 
+            lblReceptKiallitasDatuma.AutoSize = true;
+            lblReceptKiallitasDatuma.Location = new Point(109, 32);
+            lblReceptKiallitasDatuma.Name = "lblReceptKiallitasDatuma";
+            lblReceptKiallitasDatuma.Size = new Size(0, 15);
+            lblReceptKiallitasDatuma.TabIndex = 7;
+            // 
             // ReceptNezet
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(547, 193);
+            ClientSize = new Size(625, 287);
+            Controls.Add(lblReceptKiallitasDatuma);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(lblPaciensNeve);
+            Controls.Add(tboxReceptSzovege);
             Controls.Add(label1);
             Controls.Add(btnMegsem);
             Controls.Add(btnOk);
@@ -82,5 +134,10 @@
         private Button btnOk;
         private Button btnMegsem;
         private Label label1;
+        private TextBox tboxReceptSzovege;
+        private Label lblPaciensNeve;
+        private Label label2;
+        private Label label3;
+        private Label lblReceptKiallitasDatuma;
     }
 }
