@@ -94,6 +94,11 @@ namespace Frontend
             this.Cursor = Cursors.WaitCursor;
             try
             {
+                if (string.IsNullOrEmpty(tboxReceptSzovege.Text))
+                {
+                    MessageBox.Show("Adjon meg szöveget a recepthez!","Nincs kitöltve a recept",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 PatientsResponse kivalasztottPaciens = cbPaciens.SelectedItem as PatientsResponse;
                 BNOResponse kivalasztottBNO = cbBNO.SelectedItem as BNOResponse;
                 // Recept Módosítás
@@ -124,11 +129,13 @@ namespace Frontend
             {
                 this.Cursor = Cursors.Default;
             }
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void btnMegsem_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 

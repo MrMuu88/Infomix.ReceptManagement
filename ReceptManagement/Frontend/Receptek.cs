@@ -56,8 +56,11 @@ namespace Frontend
         {
             ReceptNezet ujRecept = new ReceptNezet();
             ujRecept.ShowDialog();
-            // Lista frissítése, mert lehet hogy módosult a receptlista
-            ReceptekBetoltese();
+            // Ha történt módosítás akkor újratöltöm a recept listát
+            if (ujRecept.DialogResult == DialogResult.OK)
+            {
+                ReceptekBetoltese();
+            }
         }
 
         private void listView1_DoubleClick(object sender, EventArgs e)
@@ -73,8 +76,12 @@ namespace Frontend
             // már méglévõ felírt recept megnyitása
             ReceptNezet receptNezet = new ReceptNezet(recept.PrescriptionId);
             receptNezet.ShowDialog();
-            // Lista frissítése, mert lehet hogy módosult a receptlista
-            ReceptekBetoltese();
+
+            // Ha történt módosítás akkor újratöltöm a recept listát
+            if (receptNezet.DialogResult == DialogResult.OK)
+            {
+                ReceptekBetoltese();
+            }
         }
 
         private async void btnReceptekTorlese_Click(object sender, EventArgs e)
