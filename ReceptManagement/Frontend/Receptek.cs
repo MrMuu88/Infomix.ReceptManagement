@@ -2,6 +2,7 @@ using Frontend.Models;
 using Frontend.ResponseClasses;
 using Newtonsoft.Json;
 using System;
+using System.Reflection;
 using System.Text;
 
 namespace Frontend
@@ -17,10 +18,16 @@ namespace Frontend
 
         private async void Receptek_Load(object sender, EventArgs e)
         {
+            ReceptekBetoltese();
+        }
+
+        private async void ReceptekBetoltese()
+        {
             this.Cursor = Cursors.WaitCursor;
             try
             {
-                felirtReceptek = await ApiKommunikacio.ReceptekLekereseAsync(4, 0);
+                listView1.Items.Clear();
+                felirtReceptek = await ApiKommunikacio.ReceptekLekereseAsync(20, 0);
                 foreach (var r in felirtReceptek)
                 {
                     ListViewItem lvi = new ListViewItem(r.PatientName);
@@ -88,6 +95,11 @@ namespace Frontend
             await ApiKommunikacio.ReceptTorlese(15);
         }
 
+        private void btnReceptekFrissitese_Click(object sender, EventArgs e)
+        {
+            ReceptekBetoltese();
+        }
+
         private void btnUjRecept_Click(object sender, EventArgs e)
         {
             ReceptNezet ujRecept = new ReceptNezet();
@@ -108,5 +120,36 @@ namespace Frontend
             ReceptNezet receptNezet = new ReceptNezet(recept.PrescriptionId);
             receptNezet.ShowDialog();
         }
+
+        private void btnReceptekTorlese_Click(object sender, EventArgs e)
+        {
+            // Ha nincs kijelölve egy recept sem akkor return
+            if (listView1.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show("Nincs kijelölve egy recept sem.", "Törlés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // rákérdez hogy szeretné-e törölni, és ha nem-re kattint akkor return
+            if (MessageBox.Show("Biztosan szeretné törölni a kijelölt recepteket?", "Törlés", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return;
+            }
+
+            // Ha mégis törölni szeretné, akkor egyesével törlés
+            this.Cursor = Cursors.WaitCursor;
+            foreach (var s in listView1.SelectedIndices)
+            {
+                string strIndex = listView1.SelectedIndices[0].ToString();
+                int index = int.Parse(strIndex);
+                PrescriptionResponse torlendoRecept = felirtReceptek[index];
+                // Recept törlése RESTAPI-n keresztül
+                ApiKommunikacio.ReceptTorlese(torlendoRecept.PrescriptionId);
+            }
+            this.Cursor = Cursors.Default;
+            //ReceptekBetoltese();
+        }
+
+
     }
 }

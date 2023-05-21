@@ -39,6 +39,8 @@
             PrescribedDate = new ColumnHeader();
             PrescriptionId = new ColumnHeader();
             btnUjRecept = new Button();
+            btnReceptekTorlese = new Button();
+            btnReceptekFrissitese = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -115,17 +117,39 @@
             // 
             btnUjRecept.Location = new Point(12, 378);
             btnUjRecept.Name = "btnUjRecept";
-            btnUjRecept.Size = new Size(75, 43);
+            btnUjRecept.Size = new Size(167, 43);
             btnUjRecept.TabIndex = 2;
             btnUjRecept.Text = "Új recept felírása";
             btnUjRecept.UseVisualStyleBackColor = true;
             btnUjRecept.Click += btnUjRecept_Click;
+            // 
+            // btnReceptekTorlese
+            // 
+            btnReceptekTorlese.Location = new Point(678, 378);
+            btnReceptekTorlese.Name = "btnReceptekTorlese";
+            btnReceptekTorlese.Size = new Size(110, 43);
+            btnReceptekTorlese.TabIndex = 3;
+            btnReceptekTorlese.Text = "Receptek törlése";
+            btnReceptekTorlese.UseVisualStyleBackColor = true;
+            btnReceptekTorlese.Click += btnReceptekTorlese_Click;
+            // 
+            // btnReceptekFrissitese
+            // 
+            btnReceptekFrissitese.Location = new Point(320, 378);
+            btnReceptekFrissitese.Name = "btnReceptekFrissitese";
+            btnReceptekFrissitese.Size = new Size(199, 43);
+            btnReceptekFrissitese.TabIndex = 4;
+            btnReceptekFrissitese.Text = "Receptek frissítése";
+            btnReceptekFrissitese.UseVisualStyleBackColor = true;
+            btnReceptekFrissitese.Click += btnReceptekFrissitese_Click;
             // 
             // Receptek
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnReceptekFrissitese);
+            Controls.Add(btnReceptekTorlese);
             Controls.Add(btnUjRecept);
             Controls.Add(listView1);
             Controls.Add(menuStrip1);
@@ -152,5 +176,7 @@
         private ColumnHeader PrescribedDate;
         private Button btnUjRecept;
         private ColumnHeader PrescriptionId;
+        private Button btnReceptekTorlese;
+        private Button btnReceptekFrissitese;
     }
 }

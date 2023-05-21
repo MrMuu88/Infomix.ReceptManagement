@@ -110,13 +110,21 @@ namespace Backend.ApiControllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Recept existingRecept = _dbContext.Receptek.FirstOrDefault(r => r.ReceptId == id);
-            if (existingRecept == null)
+            try
             {
-                throw new Exception("Not Found - Recept Id: " + id);
+                Recept existingRecept = _dbContext.Receptek.FirstOrDefault(r => r.ReceptId == id);
+                if (existingRecept == null)
+                {
+                    throw new Exception("Not Found - Recept Id: " + id);
+                }
+                _dbContext.Receptek.Remove(existingRecept);
+                _dbContext.SaveChanges();
             }
-            _dbContext.Receptek.Remove(existingRecept);
-            _dbContext.SaveChanges();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
         }
     }
 }
