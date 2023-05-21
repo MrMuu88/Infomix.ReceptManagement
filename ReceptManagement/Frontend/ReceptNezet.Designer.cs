@@ -123,12 +123,11 @@
             cbPaciens.Size = new Size(219, 23);
             cbPaciens.TabIndex = 8;
             cbPaciens.Visible = false;
-            cbPaciens.SelectionChangeCommitted += cbPaciens_SelectionChangeCommitted;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(17, 49);
+            label4.Location = new Point(35, 49);
             label4.Name = "label4";
             label4.Size = new Size(58, 15);
             label4.TabIndex = 9;
@@ -143,7 +142,6 @@
             cbBNO.Size = new Size(219, 23);
             cbBNO.TabIndex = 10;
             cbBNO.Visible = false;
-            cbBNO.SelectionChangeCommitted += cbBNO_SelectionChangeCommitted;
             // 
             // lbBNO
             // 
@@ -172,7 +170,7 @@
             Controls.Add(btnMegsem);
             Controls.Add(btnOk);
             Name = "ReceptNezet";
-            Text = "ReceptNezet";
+            Text = "Recept nézet";
             Load += ReceptNezet_Load;
             ResumeLayout(false);
             PerformLayout();

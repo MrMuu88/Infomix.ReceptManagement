@@ -9,13 +9,13 @@ namespace Frontend
 {
     public static class ApiKommunikacioTesztelese
     {
-        public static async void getToolStripMenuItem_Click()
+        public static async void get()
         {
             // TESZT - recept lekérése Id alapján (get/id)
             Recept recept = await ApiKommunikacio.ReceptLekereseAsync(7);
         }
 
-        public static async void postToolStripMenuItem_Click()
+        public static async void post()
         {
             Recept ujRecept = new Recept()
             {
@@ -33,7 +33,7 @@ namespace Frontend
             await ApiKommunikacio.ReceptHozzaadasaAsync(ujRecept);
         }
 
-        public static async void putToolStripMenuItem_Click()
+        public static async void put()
         {
             Recept modositottRecept = new Recept()
             {
@@ -52,7 +52,7 @@ namespace Frontend
             await ApiKommunikacio.ReceptModositasaAsync(modositottRecept);
         }
 
-        public static async void deleteToolStripMenuItem_Click()
+        public static async void delete()
         {
             await ApiKommunikacio.ReceptTorlese(15);
         }

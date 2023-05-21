@@ -71,7 +71,7 @@
             // 
             // PrescribedDate
             // 
-            PrescribedDate.Text = "Recept kiállítás dátuma";
+            PrescribedDate.Text = "Recept kiállítás időpontja";
             PrescribedDate.Width = 150;
             // 
             // PrescriptionId
@@ -142,11 +142,11 @@
             // lbPaciensNeve
             // 
             lbPaciensNeve.AutoSize = true;
-            lbPaciensNeve.Location = new Point(150, 474);
+            lbPaciensNeve.Location = new Point(104, 474);
             lbPaciensNeve.Name = "lbPaciensNeve";
-            lbPaciensNeve.Size = new Size(31, 15);
+            lbPaciensNeve.Size = new Size(78, 15);
             lbPaciensNeve.TabIndex = 8;
-            lbPaciensNeve.Text = "Név:";
+            lbPaciensNeve.Text = "Páciens neve:";
             // 
             // lbReceptSzovege
             // 

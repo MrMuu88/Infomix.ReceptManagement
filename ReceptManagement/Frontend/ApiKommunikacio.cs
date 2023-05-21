@@ -48,7 +48,7 @@ namespace Frontend
             }
         }
 
-        // https://localhost:7235/api/PrescriptionApi/limitoffset?limit=4&offset=10
+        // https://localhost:7235/api/PrescriptionApi/limitoffset?limit=20&offset=0
         public static async Task<List<PrescriptionResponse>> ReceptekLekereseAsync(int limit = 20, int offset = 0)
         {
             try

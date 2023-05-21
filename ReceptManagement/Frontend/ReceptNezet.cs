@@ -13,7 +13,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Reflection;
 using System.Diagnostics;
 
-// TODO designerben control-ok elhelyezése
+// TODO designerben control-ok elhelyezése, módosítás és mentésnél bool adatok figyelembevétele
 
 namespace Frontend
 {
@@ -100,6 +100,12 @@ namespace Frontend
                     MessageBox.Show("Adjon meg szöveget a recepthez!", "Nincs kitöltve a recept", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                if (tboxReceptSzovege.Text.Length > 512)
+                {
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show("Túl hosszú a szöveg a recepthez!", "Recept szöveg", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 PatientsResponse kivalasztottPaciens = cbPaciens.SelectedItem as PatientsResponse;
                 BNOResponse kivalasztottBNO = cbBNO.SelectedItem as BNOResponse;
                 // Recept Módosítás
@@ -141,15 +147,5 @@ namespace Frontend
             this.Close();
         }
 
-        private void cbPaciens_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            PatientsResponse kivalasztottPaciens = cbPaciens.SelectedItem as PatientsResponse;
-
-        }
-
-        private void cbBNO_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            BNOResponse kivalasztottBNO = cbBNO.SelectedItem as BNOResponse;
-        }
     }
 }
