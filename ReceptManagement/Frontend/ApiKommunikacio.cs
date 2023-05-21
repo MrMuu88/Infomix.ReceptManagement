@@ -12,7 +12,7 @@ namespace Frontend
 {
     public static class ApiKommunikacio
     {
-        private static string apiBaseUrl = "https://localhost:7235/api/PrescriptionApi";
+        private static string apiBaseUrl = "https://localhost:7235/api";
 
         // https://localhost:7235/api/PrescriptionApi/7
         public static async Task<Recept> ReceptLekereseAsync(int id)
@@ -20,7 +20,7 @@ namespace Frontend
             try
             {
                 // Az API végpont URL-je és az adott rekord azonosítója
-                string apiUrl = apiBaseUrl + "/" + id;
+                string apiUrl = apiBaseUrl + "/PrescriptionApi/" + id;
 
                 // HttpClient inicializálása
                 using var httpKliens = new HttpClient();
@@ -49,15 +49,12 @@ namespace Frontend
         }
 
         // https://localhost:7235/api/PrescriptionApi/limitoffset?limit=4&offset=10
-        public static async Task<List<PrescriptionResponse>> ReceptekLekereseAsync(int limit = 3, int offset = 0)
+        public static async Task<List<PrescriptionResponse>> ReceptekLekereseAsync(int limit = 20, int offset = 0)
         {
             try
             {
                 // Az API végpont URL-je és az adott rekord azonosítója
-                //string apiUrl = apiBaseUrl + "/?limit=" + limit + "/&offset=" + offset;
-
-                string apiUrl = apiBaseUrl + "/limitoffset?limit=" + limit + "&offset=" + offset;
-
+                string apiUrl = apiBaseUrl + "/PrescriptionApi/limitoffset?limit=" + limit + "&offset=" + offset;
 
                 // HttpClient inicializálása
                 using var httpKliens = new HttpClient();
@@ -87,7 +84,7 @@ namespace Frontend
 
         public static async Task ReceptHozzaadasaAsync(Recept ujRecept)
         {
-            string url = apiBaseUrl;
+            string url = apiBaseUrl + "/PrescriptionApi";
             string jsonStringRecept = JsonConvert.SerializeObject(ujRecept);
 
             using (HttpClient client = new HttpClient())
@@ -117,7 +114,7 @@ namespace Frontend
             string jsonRecept = JsonConvert.SerializeObject(modositottRecept);
 
             // Az API végpont URL-je és az adott rekord azonosítója
-            string apiUrl = apiBaseUrl + "/" + modositottRecept.ReceptId;
+            string apiUrl = apiBaseUrl + "/PrescriptionApi" + "/" + modositottRecept.ReceptId;
 
             // HttpClient inicializálása
             using var httpKliens = new HttpClient();
@@ -135,7 +132,7 @@ namespace Frontend
                 Console.WriteLine($"Hiba történt: {valasz.StatusCode}");
             }
         }
-     
+
         public static async Task ReceptTorlese(int id)
         {
             using (HttpClient httpKliens = new HttpClient())
@@ -154,5 +151,72 @@ namespace Frontend
                 }
             }
         }
+
+        public static async Task<List<BNOResponse>> BNOkLekereseAsync()
+        {
+            try
+            {
+                // Az API végpont URL-je és az adott rekord azonosítója
+                string apiUrl = apiBaseUrl + "/BNOApi/";
+
+                // HttpClient inicializálása
+                using var httpKliens = new HttpClient();
+
+                // GET kérés elküldése az API végpont felé
+                var valasz = await httpKliens.GetAsync(apiUrl);
+
+                // Válasz ellenőrzése
+                if (!valasz.IsSuccessStatusCode)
+                {
+                    throw new Exception("BNOk lekérdezése sikertelen: " + valasz.StatusCode);
+                }
+
+                // Válasz tartalmának olvasása JSON formátumban
+                string jsonBNOk = await valasz.Content.ReadAsStringAsync();
+
+                // JSON formátumból történő deszerializálás
+                List<BNOResponse> BNOk = JsonConvert.DeserializeObject<List<BNOResponse>>(jsonBNOk);
+
+                return BNOk;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public static async Task<List<PatientsResponse>> PaciensekLekereseAsync()
+        {
+            try
+            {
+                // Az API végpont URL-je és az adott rekord azonosítója
+                string apiUrl = apiBaseUrl + "/PatientsApi/";
+
+                // HttpClient inicializálása
+                using var httpKliens = new HttpClient();
+
+                // GET kérés elküldése az API végpont felé
+                var valasz = await httpKliens.GetAsync(apiUrl);
+
+                // Válasz ellenőrzése
+                if (!valasz.IsSuccessStatusCode)
+                {
+                    throw new Exception("Páciensek lekérdezése sikertelen: " + valasz.StatusCode);
+                }
+
+                // Válasz tartalmának olvasása JSON formátumban
+                string jsonPaciensek = await valasz.Content.ReadAsStringAsync();
+
+                // JSON formátumból történő deszerializálás
+                List<PatientsResponse> Paciensek = JsonConvert.DeserializeObject<List<PatientsResponse>>(jsonPaciensek);
+
+                return Paciensek;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

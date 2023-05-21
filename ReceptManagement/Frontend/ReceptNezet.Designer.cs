@@ -30,6 +30,7 @@
         {
             btnOk = new Button();
             btnMegsem = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // btnOk
@@ -52,22 +53,34 @@
             btnMegsem.UseVisualStyleBackColor = true;
             btnMegsem.Click += btnMegsem_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(15, 14);
+            label1.Name = "label1";
+            label1.Size = new Size(78, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Páciens neve:";
+            // 
             // ReceptNezet
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(547, 193);
+            Controls.Add(label1);
             Controls.Add(btnMegsem);
             Controls.Add(btnOk);
             Name = "ReceptNezet";
             Text = "ReceptNezet";
             Load += ReceptNezet_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button btnOk;
         private Button btnMegsem;
+        private Label label1;
     }
 }
