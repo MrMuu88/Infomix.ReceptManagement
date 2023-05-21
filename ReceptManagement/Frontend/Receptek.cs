@@ -131,5 +131,32 @@ namespace Frontend
             lapozoKihagyas += 20;
             ReceptekBetoltese();
         }
+
+        private void btnKereses_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+            List<PrescriptionResponse> felirtReceptekSzurofeltetelekkel = new List<PrescriptionResponse>(felirtReceptek);
+            // Szûrés páciens nevére
+            if (!string.IsNullOrEmpty(tbNev.Text))
+            {
+                felirtReceptekSzurofeltetelekkel = felirtReceptekSzurofeltetelekkel.Where(r => r.PatientName.ToUpper().Contains(tbNev.Text.ToUpper())).ToList();
+            }
+            // Szûrés recept szövegére
+            if (!string.IsNullOrEmpty(tbReceptSzovege.Text))
+            {
+                felirtReceptekSzurofeltetelekkel = felirtReceptekSzurofeltetelekkel.Where(r => r.PrescriptionText.ToUpper().Contains(tbReceptSzovege.Text.ToUpper())).ToList();
+            }
+            // Szûrés dátumra (egy adott napon belül)
+            felirtReceptekSzurofeltetelekkel = felirtReceptekSzurofeltetelekkel.Where(r => r.PrescribedDate.Date == dtpDatum.Value.Date).ToList();
+
+            foreach (var r in felirtReceptekSzurofeltetelekkel)
+            {
+                ListViewItem lvi = new ListViewItem(r.PatientName);
+                lvi.SubItems.Add(r.PrescriptionText);
+                lvi.SubItems.Add(r.PrescribedDate.ToString());
+                lvi.SubItems.Add(r.PrescriptionId.ToString());
+                listView1.Items.Add(lvi);
+            }
+        }
     }
 }
