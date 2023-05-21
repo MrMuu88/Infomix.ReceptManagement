@@ -1,4 +1,5 @@
 ﻿using Frontend.Models;
+using Frontend.ResponseClasses;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -48,12 +49,15 @@ namespace Frontend
         }
 
         // https://localhost:7235/api/PrescriptionApi/limitoffset?limit=4&offset=10
-        public static async Task<List<Recept>> ReceptekLekereseAsync(int limit = 4, int offset = 10)
+        public static async Task<List<PrescriptionResponse>> ReceptekLekereseAsync(int limit = 3, int offset = 0)
         {
             try
             {
                 // Az API végpont URL-je és az adott rekord azonosítója
-                string apiUrl = apiBaseUrl + "/?limit=" + limit + "/&offset=" + offset;
+                //string apiUrl = apiBaseUrl + "/?limit=" + limit + "/&offset=" + offset;
+
+                string apiUrl = apiBaseUrl + "/limitoffset?limit=" + limit + "&offset=" + offset;
+
 
                 // HttpClient inicializálása
                 using var httpKliens = new HttpClient();
@@ -71,7 +75,7 @@ namespace Frontend
                 string jsonRecept = await valasz.Content.ReadAsStringAsync();
 
                 // JSON formátumból történő deszerializálás List<Recept> listává
-                List<Recept> receptek = JsonConvert.DeserializeObject<List<Recept>>(jsonRecept);
+                List<PrescriptionResponse> receptek = JsonConvert.DeserializeObject<List<PrescriptionResponse>>(jsonRecept);
 
                 return receptek;
             }

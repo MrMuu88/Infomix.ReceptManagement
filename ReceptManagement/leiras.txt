@@ -94,7 +94,7 @@ SELECT [ReceptId]
       ,[Helyettesitheto]
       ,[PaciensId]
       ,[BNOId]
-  FROM [infomix].[dbo].[Receptek]
+  FROM [infomix].[dbo].[Receptek] order by ReceptKiallitasDatuma desc
   
 -- insert into Paciensek (Nev,Cim,Szuletesnap,TAJ) Values ('Aladár', 'Alabama', '1960-01-01', '999666999')
 -- insert into BNOk (BNOkod,BetegsegNeve) Values ('A0800', 'Rotavírus bélhurut')

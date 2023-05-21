@@ -33,6 +33,11 @@
             postToolStripMenuItem = new ToolStripMenuItem();
             putToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
+            listView1 = new ListView();
+            PatientName = new ColumnHeader();
+            PrescriptionText = new ColumnHeader();
+            PrescribedDate = new ColumnHeader();
+            btnUjRecept = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -73,11 +78,48 @@
             deleteToolStripMenuItem.Text = "DELETE";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
+            // listView1
+            // 
+            listView1.Columns.AddRange(new ColumnHeader[] { PatientName, PrescriptionText, PrescribedDate });
+            listView1.Location = new Point(0, 27);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(796, 334);
+            listView1.TabIndex = 1;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.DoubleClick += listView1_DoubleClick;
+            // 
+            // PatientName
+            // 
+            PatientName.Text = "Páciens neve";
+            PatientName.Width = 125;
+            // 
+            // PrescriptionText
+            // 
+            PrescriptionText.Text = "Recept szövege";
+            PrescriptionText.Width = 350;
+            // 
+            // PrescribedDate
+            // 
+            PrescribedDate.Text = "Recept felírásának ideje";
+            PrescribedDate.Width = 140;
+            // 
+            // btnUjRecept
+            // 
+            btnUjRecept.Location = new Point(12, 378);
+            btnUjRecept.Name = "btnUjRecept";
+            btnUjRecept.Size = new Size(75, 43);
+            btnUjRecept.TabIndex = 2;
+            btnUjRecept.Text = "Új recept felírása";
+            btnUjRecept.UseVisualStyleBackColor = true;
+            btnUjRecept.Click += btnUjRecept_Click;
+            // 
             // Receptek
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnUjRecept);
+            Controls.Add(listView1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Receptek";
@@ -96,5 +138,10 @@
         private ToolStripMenuItem postToolStripMenuItem;
         private ToolStripMenuItem putToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem;
+        private ListView listView1;
+        private ColumnHeader PatientName;
+        private ColumnHeader PrescriptionText;
+        private ColumnHeader PrescribedDate;
+        private Button btnUjRecept;
     }
 }

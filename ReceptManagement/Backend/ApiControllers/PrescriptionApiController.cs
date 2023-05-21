@@ -1,4 +1,5 @@
 ﻿using Backend.Models;
+using Backend.ResponseClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -33,9 +34,22 @@ namespace Backend.ApiControllers
         }
 
         [HttpGet("limitoffset")]
-        public IEnumerable<Recept> GetPrescriptionsWithLimitAndOffset(int limit, int offset)
+        public IEnumerable<PrescriptionResponse> GetPrescriptionsWithLimitAndOffset(int limit, int offset)
         {
-            return _dbContext.Receptek.Skip(offset).Take(limit);
+            //return _dbContext.Receptek.Skip(offset).Take(limit);
+            var prescriptions = (from r in _dbContext.Receptek
+                                 join p in _dbContext.Paciensek on r.PaciensId equals p.PaciensId
+                                 join b in _dbContext.BNOk on r.BNOId equals b.BNOId
+                                 orderby r.ReceptKiallitasDatuma descending
+                                 select new PrescriptionResponse
+                                 {
+                                     PatientName = p.Nev,
+                                     BNOId = b.BNOId,
+                                     PrescribedDate = r.ReceptKiallitasDatuma,
+                                     PrescriptionId = r.ReceptId,
+                                     PrescriptionText = r.ReceptSzovege.Substring(0, 50)
+                                 }).Skip(offset).Take(limit).ToList();
+            return prescriptions;
         }
 
         [HttpPost]

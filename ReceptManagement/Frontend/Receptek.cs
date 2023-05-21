@@ -1,4 +1,5 @@
 using Frontend.Models;
+using Frontend.ResponseClasses;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -6,6 +7,8 @@ namespace Frontend
 {
     public partial class Receptek : Form
     {
+        public List<PrescriptionResponse> felirtReceptek;
+
         public Receptek()
         {
             InitializeComponent();
@@ -13,7 +16,25 @@ namespace Frontend
 
         private async void Receptek_Load(object sender, EventArgs e)
         {
-            List<Recept> receptek = await ApiKommunikacio.ReceptekLekereseAsync(4,10);
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                felirtReceptek = await ApiKommunikacio.ReceptekLekereseAsync(4, 0);
+                listView1.View = View.Details;
+                foreach (var r in felirtReceptek)
+                {
+                    ListViewItem lvi = new ListViewItem(new string[] { r.PatientName, r.PrescriptionText, r.PrescribedDate.ToString() });
+                    listView1.Items.Add(lvi);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "HIBA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
 
         private async void getToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,5 +85,15 @@ namespace Frontend
             await ApiKommunikacio.ReceptTorlese(15);
         }
 
+        private void btnUjRecept_Click(object sender, EventArgs e)
+        {
+            ReceptNezet ujRecept = new ReceptNezet();
+            ujRecept.ShowDialog();
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            ;
+        }
     }
 }
