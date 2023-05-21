@@ -121,7 +121,7 @@ namespace Frontend
             receptNezet.ShowDialog();
         }
 
-        private void btnReceptekTorlese_Click(object sender, EventArgs e)
+        private async void btnReceptekTorlese_Click(object sender, EventArgs e)
         {
             // Ha nincs kijelölve egy recept sem akkor return
             if (listView1.SelectedIndices.Count == 0)
@@ -138,16 +138,16 @@ namespace Frontend
 
             // Ha mégis törölni szeretné, akkor egyesével törlés
             this.Cursor = Cursors.WaitCursor;
-            foreach (var s in listView1.SelectedIndices)
+            foreach (var torlendoIndex in listView1.SelectedIndices)
             {
-                string strIndex = listView1.SelectedIndices[0].ToString();
+                string strIndex = torlendoIndex.ToString();
                 int index = int.Parse(strIndex);
                 PrescriptionResponse torlendoRecept = felirtReceptek[index];
                 // Recept törlése RESTAPI-n keresztül
-                ApiKommunikacio.ReceptTorlese(torlendoRecept.PrescriptionId);
+                await ApiKommunikacio.ReceptTorlese(torlendoRecept.PrescriptionId);
             }
             this.Cursor = Cursors.Default;
-            //ReceptekBetoltese();
+            ReceptekBetoltese();
         }
 
 
