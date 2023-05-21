@@ -37,6 +37,7 @@
             PatientName = new ColumnHeader();
             PrescriptionText = new ColumnHeader();
             PrescribedDate = new ColumnHeader();
+            PrescriptionId = new ColumnHeader();
             btnUjRecept = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -80,12 +81,14 @@
             // 
             // listView1
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { PatientName, PrescriptionText, PrescribedDate });
+            listView1.Columns.AddRange(new ColumnHeader[] { PatientName, PrescriptionText, PrescribedDate, PrescriptionId });
+            listView1.FullRowSelect = true;
             listView1.Location = new Point(0, 27);
             listView1.Name = "listView1";
             listView1.Size = new Size(796, 334);
             listView1.TabIndex = 1;
             listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
             listView1.DoubleClick += listView1_DoubleClick;
             // 
             // PatientName
@@ -102,6 +105,11 @@
             // 
             PrescribedDate.Text = "Recept felírásának ideje";
             PrescribedDate.Width = 140;
+            // 
+            // PrescriptionId
+            // 
+            PrescriptionId.Text = "PrescriptionId";
+            PrescriptionId.Width = 0;
             // 
             // btnUjRecept
             // 
@@ -143,5 +151,6 @@
         private ColumnHeader PrescriptionText;
         private ColumnHeader PrescribedDate;
         private Button btnUjRecept;
+        private ColumnHeader PrescriptionId;
     }
 }

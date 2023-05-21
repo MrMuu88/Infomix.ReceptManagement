@@ -1,6 +1,7 @@
 using Frontend.Models;
 using Frontend.ResponseClasses;
 using Newtonsoft.Json;
+using System;
 using System.Text;
 
 namespace Frontend
@@ -20,10 +21,12 @@ namespace Frontend
             try
             {
                 felirtReceptek = await ApiKommunikacio.ReceptekLekereseAsync(4, 0);
-                listView1.View = View.Details;
                 foreach (var r in felirtReceptek)
                 {
-                    ListViewItem lvi = new ListViewItem(new string[] { r.PatientName, r.PrescriptionText, r.PrescribedDate.ToString() });
+                    ListViewItem lvi = new ListViewItem(r.PatientName);
+                    lvi.SubItems.Add(r.PrescriptionText);
+                    lvi.SubItems.Add(r.PrescribedDate.ToString());
+                    lvi.SubItems.Add(r.PrescriptionId.ToString());
                     listView1.Items.Add(lvi);
                 }
             }
@@ -93,7 +96,17 @@ namespace Frontend
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            ;
+            int index = 0;
+            string strIndex = listView1.SelectedIndices[0].ToString();
+            if (int.TryParse(strIndex, out index) == false)
+            {
+                MessageBox.Show("Nincs kijelölve recept");
+            }
+            PrescriptionResponse recept = felirtReceptek[index];
+
+            // már méglévõ felírt recept megnyitása
+            ReceptNezet receptNezet = new ReceptNezet(recept.PrescriptionId);
+            receptNezet.ShowDialog();
         }
     }
 }
